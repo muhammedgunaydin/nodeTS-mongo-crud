@@ -2,19 +2,14 @@ import 'mocha'
 import { expect } from 'chai'
 import request from 'supertest'
 import app from '../app'
-import Book from '../models/Book'
 
 describe('CRUD Test', () => {
   let book: any
 
-  before(async () => {
-    await Book.deleteMany({})
-  })
-
   it('should create a new book', (done) => {
     request(app)
       .post('/api/book')
-      .send({ name: 'Book1', author: 'Tester', page: 512, year: 1024 })
+      .send({ name: 'testBook', author: 'Tester', page: 512, year: 1024 })
       .end((err, res) => {
         if (err) {
           return done(err)
